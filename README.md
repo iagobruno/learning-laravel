@@ -24,3 +24,5 @@ Clone this repo and run commands in the order below:
 > php artisan db:seed
 > php artisan serve
 ```
+
+Then open http://localhost:8000/ in your browser.

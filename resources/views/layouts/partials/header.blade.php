@@ -19,7 +19,8 @@
                 <button type="submit">Sair</button>
             </form>
         @else
-            <form action="{{ route('login') }}" method="get">
+            <form action="{{ route('auth.redirect') }}" method="post">
+                @csrf
                 <button type="submit">Fazer login</button>
             </form>
         @endauth

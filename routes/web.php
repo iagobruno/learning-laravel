@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,9 +20,9 @@ Route::redirect('/', '/products');
 
 Route::resource('products', ProductController::class);
 
-Route::get('/login', [LoginController::class, 'index'])->name('login');
-Route::post('/auth', [LoginController::class, 'auth'])->name('login.auth');
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::post('/auth/redirect', [AuthController::class, 'redirect'])->name('auth.redirect');
+Route::get('/auth/callback', [AuthController::class, 'callback'])->name('auth.callback');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::view('/welcome', 'welcome');
 
