@@ -10,8 +10,11 @@
 - [x] Validar dados antes de salvar no db
 - [x] Mostrar mensagens flash
 - [x] Usar autenticação
+- [x] Criar policies para autorização de ações
 
 ## Getting started
+
+Please check the official [laravel installation guide](https://laravel.com/docs/5.4/installation#installation) for server requirements before you start.
 
 Clone this repo and run commands in the order below:
 
@@ -25,4 +28,4 @@ Clone this repo and run commands in the order below:
 > php artisan serve
 ```
 
-Then open http://localhost:8000/ in your browser.
+You can now access the server at http://localhost:8000
