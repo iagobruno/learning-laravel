@@ -5,11 +5,11 @@
 @section('content')
     <h1>Produtos</h1>
 
-    @auth
+    @can('create', App\Models\Product::class)
         <form action="{{ route('products.create') }}" method="get">
             <button type="submit">Criar produto</button>
         </form>
-    @endauth
+    @endcan
 
     @if (count($products) === 0)
         Nenhum produto encontrado

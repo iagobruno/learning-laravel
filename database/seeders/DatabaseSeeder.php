@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
         // DB::table('products')->truncate();
         // DB::table('users')->truncate();
 
-        $user1 = User::factory()->create();
+        $user1 = User::factory()->admin()->create();
 
         Product::factory()->draft()->create([
             'created_by' => $user1->id,

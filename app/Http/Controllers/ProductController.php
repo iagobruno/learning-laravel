@@ -39,6 +39,8 @@ class ProductController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Product::class);
+
         return view('products.create');
     }
 
@@ -50,6 +52,8 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create', Product::class);
+
         $data = $request->validate([
             'title' => ['required', 'max:255', 'min:1'],
             'price' => ['required', 'numeric', 'min:0'],
