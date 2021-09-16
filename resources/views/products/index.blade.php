@@ -11,7 +11,7 @@
         </form>
     @endauth
 
-    @if (count($products) == 0)
+    @if (count($products) === 0)
         Nenhum produto encontrado
     @endif
 

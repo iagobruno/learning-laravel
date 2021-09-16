@@ -1,12 +1,12 @@
-@if ($message = Session::get('success'))
+@if (session('success'))
     <div class="alert alert-success">
-        ✅ {{ $message }}
+        ✅ {{ session('success') }}
     </div>
 @endif
 
-@if ($message = Session::get('error'))
+@if (session('error'))
     <div class="alert alert-error">
-        ❗ {{ $message }}
+        ❗ {{ session('error') }}
     </div>
 @endif
 
