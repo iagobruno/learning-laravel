@@ -12,14 +12,19 @@
     <p>Criado por: {{ $product->owner->name }} </p>
 
     @auth
+        @can('update-product', $product)
         <form action="{{ route('products.edit', $product->slug) }}" method="get">
             <button type="submit">Editar produto</button>
         </form>
+        @endcan
+
+        @can('delete-product', $product)
         <form action="{{ route('products.destroy', $product->slug) }}" method="post">
             @method('delete')
             @csrf
             <button type="submit">Deletar produto</button>
         </form>
+        @endcan
     @endauth
 @endsection
 
