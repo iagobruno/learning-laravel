@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -58,6 +59,7 @@ class ProductController extends Controller
 
         $product = new Product;
         $product->fill($data);
+        $product->created_by = Auth::user()->id;
         $product->publish();
 
         $request->session()->flash('success', 'Produto criado com sucesso!');

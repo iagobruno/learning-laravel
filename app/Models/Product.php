@@ -18,6 +18,11 @@ class Product extends Model
      */
     protected $fillable = ['title', 'slug', 'price', 'qty', 'description'];
 
+    public function owner()
+    {
+        return $this->belongsTo(User::class, 'created_by', 'id');
+    }
+
     /**
      * Get the route key for implict binding.
      * @see https://laravel.com/docs/8.x/routing#implicit-binding

@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -15,10 +16,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('products')->truncate();
+        // DB::table('products')->truncate();
+        // DB::table('users')->truncate();
 
-        Product::factory()->draft()->create();
-        Product::factory()->count(5)->create();
-        Product::factory()->private()->create();
+        $user1 = User::factory()->create();
+
+        Product::factory()->draft()->create([
+            'created_by' => $user1->id,
+        ]);
+        Product::factory()->count(5)->create([
+            'created_by' => $user1->id,
+        ]);
+        Product::factory()->private()->create([
+            'created_by' => $user1->id,
+        ]);
     }
 }

@@ -9,6 +9,7 @@
     @if ($product->description)
         <p>{{ $product->description }}</p>
     @endif
+    <p>Criado por: {{ $product->owner->name }} </p>
 
     @auth
         <form action="{{ route('products.edit', $product->slug) }}" method="get">

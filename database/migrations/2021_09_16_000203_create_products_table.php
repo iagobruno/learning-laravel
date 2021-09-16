@@ -21,8 +21,11 @@ class CreateProductsTable extends Migration
             $table->decimal('price');
             $table->integer('qty')->default(0);
             $table->text('description')->nullable();
+            $table->foreignId('created_by');
             $table->timestamp('published_at')->nullable();
             $table->timestamps();
+
+            $table->foreign('created_by')->references('id')->on('users')->onDelete('CASCADE');
         });
     }
 
