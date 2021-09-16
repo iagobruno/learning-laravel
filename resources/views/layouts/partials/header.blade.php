@@ -10,6 +10,8 @@
     </nav>
 
     <span style="margin-left: auto;">
+        <a href="/telescope" target="_blank" style="margin-right: 16px;">Telescope</a>
+
         @auth
             Olá {{ auth()->user()->name }}!
             <form action="{{ route('logout') }}" method="post">
@@ -28,7 +30,8 @@
 <style>
     header {
         display: flex;
-        padding: 16px 0px;
+        align-items: center;
+        padding: 20px 0px;
     }
     header form {
         display: inline;
@@ -36,6 +39,7 @@
     }
     header nav {
         display: flex;
+        align-items: center;
         gap: 14px;
     }
 </style>
