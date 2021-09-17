@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\StoreProductRequest;
 
 class ProductController extends Controller
 {
@@ -50,16 +51,11 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreProductRequest $request)
     {
         $this->authorize('create', Product::class);
 
-        $data = $request->validate([
-            'title' => ['required', 'max:255', 'min:1'],
-            'price' => ['required', 'numeric', 'min:0'],
-            'qty' => ['required', 'numeric', 'min:0'],
-            'description' => [],
-        ]);
+        $data = $request->validated();
 
         $product = new Product;
         $product->fill($data);
@@ -107,16 +103,11 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(StoreProductRequest $request, Product $product)
     {
         $this->authorize('update', $product);
 
-        $data = $request->validate([
-            'title' => ['required', 'max:255', 'min:1'],
-            'price' => ['required', 'numeric', 'min:0'],
-            'qty' => ['required', 'numeric', 'min:0'],
-            'description' => [],
-        ]);
+        $data = $request->validated();
 
         $product->update($data);
         $product->save();
