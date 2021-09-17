@@ -20,7 +20,7 @@ Route::redirect('/', '/products');
 
 Route::resource('products', ProductController::class);
 
-Route::post('/auth/redirect', [AuthController::class, 'redirect'])->name('auth.redirect');
+Route::get('/auth/redirect', [AuthController::class, 'redirect'])->name('auth.redirect');
 Route::get('/auth/callback', [AuthController::class, 'callback'])->name('auth.callback');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
