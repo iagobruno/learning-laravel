@@ -11,6 +11,7 @@
 - [x] Mostrar mensagens flash
 - [x] Usar autenticação
 - [x] Criar policies para autorização de ações
+- [x] Brincar com websocket
 
 ## Getting started
 

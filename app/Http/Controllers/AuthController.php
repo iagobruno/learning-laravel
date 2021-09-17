@@ -9,12 +9,16 @@ use Laravel\Socialite\Facades\Socialite;
 
 class AuthController extends Controller
 {
-    public function redirect()
+    public function redirect(Request $request)
     {
+        if ($redirect_to = request('redirect_to')) {
+            $request->session()->put('redirect_to', $redirect_to);
+        }
+
         return Socialite::driver('github')->redirect();
     }
 
-    public function callback()
+    public function callback(Request $request)
     {
         $githubUser = Socialite::driver('github')->user();
 
@@ -31,7 +35,14 @@ class AuthController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('products.index');
+        if ($request->session()->has('redirect_to')) {
+            $redirect_to = $request->session()->get('redirect_to');
+            $request->session()->forget('redirect_to');
+            return redirect($redirect_to);
+        } else {
+            return redirect()->route('products.index');
+        }
+
     }
 
     public function authAsGuest()
