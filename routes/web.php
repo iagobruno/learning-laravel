@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AuthController;
+use App\Events\LogEvent;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,14 @@ Route::resource('products', ProductController::class);
 Route::get('/auth/redirect', [AuthController::class, 'redirect'])->name('auth.redirect');
 Route::get('/auth/callback', [AuthController::class, 'callback'])->name('auth.callback');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::view('/websocket', 'websocket');
+
+Route::get('/websocket/dispatch', function () {
+    $text = request('text');
+
+    LogEvent::dispatch($text ?? 'ping');
+});
 
 Route::view('/welcome', 'welcome');
 
