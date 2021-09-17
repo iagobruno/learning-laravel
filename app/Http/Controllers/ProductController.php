@@ -17,6 +17,9 @@ class ProductController extends Controller
     public function __construct()
     {
         $this->middleware('auth')->except(['index', 'show']);
+
+        // This controller methods will be mapped to their corresponding policy method.
+        $this->authorizeResource(Product::class, 'product');
     }
 
     /**
@@ -40,8 +43,6 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $this->authorize('create', Product::class);
-
         return view('products.create');
     }
 
@@ -53,8 +54,6 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        $this->authorize('create', Product::class);
-
         $data = $request->validated();
 
         $product = new Product;
@@ -76,8 +75,6 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        $this->authorize('view', $product);
-
         return view('products.show', [
             'product' => $product
         ]);
@@ -90,8 +87,6 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        $this->authorize('update', $product);
-
         return view('products.edit', [
             'product' => $product
         ]);
@@ -105,8 +100,6 @@ class ProductController extends Controller
      */
     public function update(StoreProductRequest $request, Product $product)
     {
-        $this->authorize('update', $product);
-
         $data = $request->validated();
 
         $product->update($data);
@@ -126,8 +119,6 @@ class ProductController extends Controller
      */
     public function destroy(Request $request, Product $product)
     {
-        $this->authorize('delete', $product);
-
         $product->delete();
 
         $request->session()->flash('success', 'Produto removido com sucesso!');
