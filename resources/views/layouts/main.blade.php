@@ -6,6 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title') - {{ config('app.name') }}</title>
 
+    <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
+    <script src="{{ mix('/js/app.js') }}" async defer></script>
+
     @stack('extra_head')
 </head>
 <body>

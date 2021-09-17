@@ -14,10 +14,10 @@ class StoreProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => ['required', 'max:255', 'min:1'],
+            'title' => ['required', 'string', 'max:255', 'min:1'],
             'price' => ['required', 'numeric', 'min:0'],
             'qty' => ['required', 'numeric', 'min:0'],
-            'description' => ['nullable'],
+            'description' => ['nullable', 'string'],
         ];
     }
 
