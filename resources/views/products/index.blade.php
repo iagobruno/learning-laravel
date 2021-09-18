@@ -11,16 +11,16 @@
         </form>
     @endcan
 
-    @if (count($products) === 0)
+    @if (isset($products) && count($products) >= 1)
+        <ul>
+            @foreach ($products as $product)
+                <li>
+                    <a href="{{ route('products.show', $product->slug) }}">{{ $product->title }}</a>
+                    - R$ {{ number_format($product->price, 2, ',', ' ') }}
+                </li>
+            @endforeach
+        </ul>
+    @else
         Nenhum produto encontrado
     @endif
-
-    <ul>
-        @foreach ($products as $product)
-            <li>
-                <a href="{{ route('products.show', $product->slug) }}">{{ $product->title }}</a>
-                - R$ {{ number_format($product->price, 2, ',', ' ') }}
-            </li>
-        @endforeach
-    </ul>
 @endsection

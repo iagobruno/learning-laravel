@@ -11,9 +11,8 @@ class AuthController extends Controller
 {
     public function redirect(Request $request)
     {
-        if ($redirect_to = request('redirect_to')) {
-            $request->session()->put('redirect_to', $redirect_to);
-        }
+        $redirect_to = request('redirect_to', url()->previous());
+        $request->session()->put('redirect_to', $redirect_to);
 
         return Socialite::driver('github')->redirect();
     }

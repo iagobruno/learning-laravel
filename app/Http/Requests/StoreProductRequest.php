@@ -17,7 +17,7 @@ class StoreProductRequest extends FormRequest
             'title' => ['required', 'string', 'max:255', 'min:1'],
             'price' => ['required', 'numeric', 'min:0'],
             'qty' => ['required', 'numeric', 'min:0'],
-            'description' => ['nullable', 'string'],
+            'description' => ['sometimes', 'nullable', 'string'],
         ];
     }
 

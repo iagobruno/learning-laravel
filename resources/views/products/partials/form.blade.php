@@ -8,8 +8,11 @@
           type="text"
           name="title"
           value="{{ old('title') ?? $product->title ?? '' }}"
+          @class([ 'is-invalid' => $errors->has('title') ])
           required
           maxlength="255"
+          autocomplete="off"
+          autofocus
         >
         @error('title') <div class="error-message">{{ $message }}</div> @enderror
     </label>
@@ -20,6 +23,7 @@
           type="number"
           name="price"
           value="{{ old('price') ?? $product->price ?? '0' }}"
+          @class([ 'is-invalid' => $errors->has('price') ])
           required
           min="0"
           step=".01"
@@ -33,6 +37,7 @@
           type="number"
           name="qty"
           value="{{ old('qty') ?? $product->qty ?? '0' }}"
+          @class([ 'is-invalid' => $errors->has('qty') ])
           min="0"
           required
         >
@@ -43,6 +48,7 @@
         <strong>Descrição:</strong>
         <textarea
           name="description"
+          @class([ 'is-invalid' => $errors->has('description') ])
           cols="60"
           rows="10"
         >{{ old('description') ?? $product->description ?? '' }}</textarea>
@@ -62,5 +68,9 @@
     }
     .error-message {
         color: red;
+    }
+    input.is-invalid,
+    textarea.is-invalid {
+        border: 1px solid red;
     }
 </style>

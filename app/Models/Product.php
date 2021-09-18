@@ -18,10 +18,12 @@ class Product extends Model
      */
     protected $fillable = ['title', 'slug', 'price', 'qty', 'description'];
 
+    //#region Relationships
     public function owner()
     {
         return $this->belongsTo(User::class, 'created_by', 'id');
     }
+    //#endregion
 
     /**
      * Get the route key for implict binding.
@@ -48,10 +50,12 @@ class Product extends Model
         ];
     }
 
+    //#region Methods
     public function publish()
     {
         $this->status = 'public';
         $this->published_at = now();
         $this->save();
     }
+    //#endregion
 }
