@@ -5,9 +5,11 @@
 @section('content')
     <h1>Editar produto</h1>
 
-    @include('products.partials.form', [
+    @component('components.product-form', [
         'formMethod' => 'PATCH',
         'formAction' => route('products.update', $product->slug),
-        'buttonText' => 'Salvar produto'
+        'buttonText' => 'Salvar produto',
+        'product' => $product,
     ])
+    @endcomponent
 @endsection
