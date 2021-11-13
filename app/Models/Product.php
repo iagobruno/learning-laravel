@@ -13,10 +13,15 @@ class Product extends Model
 
     /**
      * The attributes that are mass assignable.
-     *
-     * @var array
      */
-    protected $fillable = ['title', 'slug', 'price', 'qty', 'description'];
+    protected $fillable = [
+        'title',
+        'slug',
+        'price',
+        'qty',
+        'description'
+    ];
+
 
     //#region Relationships
     public function owner()
@@ -25,30 +30,6 @@ class Product extends Model
     }
     //#endregion
 
-    /**
-     * Get the route key for implict binding.
-     * @see https://laravel.com/docs/8.x/routing#implicit-binding
-     *
-     * @return string
-     */
-    public function getRouteKeyName()
-    {
-        return 'slug';
-    }
-
-    /**
-     * Return the sluggable configuration for this model.
-     *
-     * @return array
-     */
-    public function sluggable(): array
-    {
-        return [
-            'slug' => [
-                'source' => 'title',
-            ]
-        ];
-    }
 
     //#region Methods
     public function publish()
@@ -58,4 +39,31 @@ class Product extends Model
         $this->save();
     }
     //#endregion
+
+    public function getFormatedPriceAttribute()
+    {
+        return number_format($this->price, 2, ',', ' ');
+    }
+
+
+    /**
+     * Get the route key for implict binding.
+     * @see https://laravel.com/docs/8.x/routing#implicit-binding
+     */
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+    /**
+     * Return the sluggable configuration for this model.
+     */
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title',
+            ]
+        ];
+    }
 }
