@@ -2,7 +2,7 @@
     <nav>
         <a href="/">Página inicial</a>
         <a href="{{ route('products.index') }}">Produtos</a>
-        @can('create', App\Models\Product::class)
+        @can('create', \App\Models\Product::class)
             <form action="{{ route('products.create') }}" method="get">
                 <button type="submit">Criar produto</button>
             </form>
