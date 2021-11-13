@@ -11,8 +11,8 @@ class AuthController extends Controller
 {
     public function redirect(Request $request)
     {
-        $redirect_to = request('redirect_to', url()->previous());
-        $request->session()->put('redirect_to', $redirect_to);
+        $return_to = request('return_to', url()->previous());
+        session()->put('url.intended', $return_to);
 
         return Socialite::driver('github')->redirect();
     }
@@ -34,14 +34,7 @@ class AuthController extends Controller
 
         Auth::login($user);
 
-        if ($request->session()->has('redirect_to')) {
-            $redirect_to = $request->session()->get('redirect_to');
-            $request->session()->forget('redirect_to');
-            return redirect($redirect_to);
-        } else {
-            return redirect()->route('products.index');
-        }
-
+        return redirect()->intended(route('products.index'));
     }
 
     public function authAsGuest()
